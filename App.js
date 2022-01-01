@@ -3,7 +3,14 @@ import { StatusBar } from 'expo-status-bar';
 import { findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
 
 
+import Home from "./components/home/Home"
+import Statistics from "./components/statistics/Statistics"
+import Calendar from "./components/calendar/Calendar"
+import Sleep from "./components/sleep/Sleep"
 import Settings from "./components/settings/Settings"
+import SettingsNavigator from "./routes/settingsNavigator"
+
+import { globalStyle } from './styles/global';
 
 
 const {width, height} = Dimensions.get("screen");
@@ -15,39 +22,46 @@ const DATA = [
   {
     id: 'comp1',
     description: 'Home',
+    icon: '',
   },
   {
     id: 'comp2',
     description: 'Statistics',
+    icon: '',
   },
   {
     id: 'comp3',
     description: 'Calendar',
+    icon: '',
   },
   {
     id: 'comp4',
     description: 'Sleep',
+    icon: '',
   },
   {
     id: 'comp5',
     description: 'Settings',
+    icon: '',
   }
 ];
 
 const data  = DATA.map((i) => ({
   key : i.id,
   title: i.description,
+  icon : '',
   ref: React.createRef()
 }));
 
 
 // HERE I WILL INSERT ALL COMPONENTS (PAGES) I'M USING
 const mapOfComponents = {
-  comp1: <Settings />,
-  comp2: <Settings />,
-  comp3: <Settings />,
-  comp4: <Settings />,
-  comp5: <Settings />
+  comp1: <Home />,
+  comp2: <Statistics />,
+  comp3: <Calendar />,
+  comp4: <Sleep />,
+  //comp5: <Settings />
+  comp5: <SettingsNavigator /> 
 };
 
 
@@ -70,12 +84,13 @@ const Indicator = ({measures, scrollX}) => {
 }
 
 
- // this is tabs component used below  ( menu ) -> can be extracted into new component for better project structure
+ //This is tabs component used below  ( menu ) -> can be extracted into new component for better project structure
 
  const Tab = React.forwardRef(({item,onItemPress}, ref)  =>{
   return (
     <TouchableOpacity onPress={onItemPress}>
       <View ref={ref} >
+ 
         <Text style={{color: "white", fontSize: 70/data.length ,paddingVertical: 21, fontWeight:"bold", textTransform: "uppercase"}}>{item.title}</Text>
       </View>
     </TouchableOpacity>
@@ -102,7 +117,7 @@ const Tabs = ({data, scrollX , onItemPress}) => {
   return (
     <View ref={containerRef} style={{position: "absolute", bottom :  0 ,width }}>
       <View style={{justifyContent: "space-evenly", flex: 1, flexDirection: "row",backgroundColor:"black"}}>
-        {data.map((item,index) => {
+        {data.map((item,index) => { 
           return <Tab key={item.key} item={item} ref={item.ref} onItemPress={() => onItemPress(index)}/>
         })}
       </View>
@@ -119,11 +134,14 @@ export default function App() {
   //Animated.Value is not beeing changed when the component gets new props or gets rerendered
   const scrollX = React.useRef(new Animated.Value(0)).current;   
   const ref = React.useRef();
+  //itemIndex gives me the item on which we are 
   const onItemPress = React.useCallback(itemIndex => {
     ref?.current?.scrollToOffset({
       offset:itemIndex * width
     })
+    //console.log(itemIndex)
   }) 
+  
   return (
     <View style={styles.container}> 
       <StatusBar style="auto" />
