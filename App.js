@@ -9,7 +9,7 @@ import Calendar from "./components/calendar/Calendar"
 import Sleep from "./components/sleep/Sleep"
 import Settings from "./components/settings/Settings"
 import SettingsNavigator from "./routes/settingsNavigator"
-
+import Icon from 'react-native-vector-icons/Ionicons';
 import { globalStyle } from './styles/global';
 
 
@@ -21,28 +21,28 @@ const {width, height} = Dimensions.get("screen");
 const DATA = [
   {
     id: 'comp1',
+    icon: <Icon name="apps-outline"   size={25} color="#fff" />,
     description: 'Home',
-    icon: '',
   },
   {
     id: 'comp2',
+    icon: <Icon name="analytics-outline"   size={25} color="#fff" />,
     description: 'Statistics',
-    icon: '',
   },
   {
     id: 'comp3',
+    icon: <Icon name="calendar-outline"  size={25} color="#fff" /> ,
     description: 'Calendar',
-    icon: '',
   },
   {
     id: 'comp4',
+    icon: <Icon name="moon-outline"   size={25} color="#fff" />,
     description: 'Sleep',
-    icon: '',
   },
   {
     id: 'comp5',
+    icon:  <Icon name="settings-outline"   size={25} color="#fff" />,
     description: 'Settings',
-    icon: '',
   }
 ];
 
@@ -91,8 +91,11 @@ const Indicator = ({measures, scrollX}) => {
     <TouchableOpacity onPress={onItemPress}>
       <View ref={ref} >
  
-        <Text style={{color: "white", fontSize: 70/data.length ,paddingVertical: 21, fontWeight:"bold", textTransform: "uppercase"}}>{item.title}</Text>
-      </View>
+        <Text style={{color: "white", fontSize: 70/data.length ,paddingVertical: 21, fontWeight:"bold", textTransform: "uppercase"}}>
+          {item.icon}
+          {item.title}
+        </Text>
+      </View> 
     </TouchableOpacity>
   )
 })
