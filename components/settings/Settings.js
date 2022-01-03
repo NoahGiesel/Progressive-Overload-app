@@ -12,7 +12,7 @@ export default function Settings( {navigation } ) {
 
 
   return (
-      <ScrollView > 
+      <ScrollView  > 
     <View style={styles.container}>
       <View style={styles.section}>
         <Icon name="build-outline" style={styles.icon} size={21} color="#666" /> 
@@ -56,6 +56,22 @@ export default function Settings( {navigation } ) {
           height={35}
           animationDuration={100}
           options={[{ label: 'cm', value: 'cm' },{ label: 'in', value: 'in' }]}  
+          initial={0} onPress={value => console.log(`Call onPress with value: ${value}`)} 
+        />
+      </View>
+      <View style={styles.switchView} onPress={() => navigation.push("Privacy")}>
+        <Text style={styles.switchText}>Time Unit</Text>
+        <SwitchSelector  
+          style={styles.switch} 
+          textColor={'#888'} 
+          buttonColor={'#878787'} 
+          backgroundColor={'#f1f1f1'}
+          borderRadius={18}
+          fontSize={16}
+          bold={true}
+          height={35}
+          animationDuration={100}
+          options={[{ label: 'am-pm', value: 'us' },{ label: '24h', value: 'eu' }]}  
           initial={0} onPress={value => console.log(`Call onPress with value: ${value}`)} 
         />
       </View>
@@ -129,6 +145,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: height,
     backgroundColor : "#fff",
+    //backgroundColor : "#0B0B19",
     alignItems: 'center', 
   },
   text : {
@@ -176,7 +193,7 @@ const styles = StyleSheet.create({
   },
   textButton: {
     width: width ,
-    paddingHorizontal: 20, 
+    paddingHorizontal: 18, 
   },
   switchText : {      
     width: width-135,

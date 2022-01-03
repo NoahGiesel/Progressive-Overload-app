@@ -1,8 +1,9 @@
 import React, {useState, useEffect, useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
-
-
+//import Constants from 'expo-constants'
+// inside css  marginTop:  Constants.statusBarHeight 
+ 
 import Home from "./components/home/Home"
 import Statistics from "./components/statistics/Statistics"
 import Calendar from "./components/calendar/Calendar"
