@@ -156,7 +156,8 @@ export default function App() {
         horizontal
         showsHorizontalScrollIndicator={false}
         pagingEnabled
-        bounces={false}
+        bounces={false} 
+        decelerationRate={0.9}
         //scrollX gets modified based on the scroll position , useNativeDriver set to false, does not work with width.
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {x:scrollX}}}],
@@ -178,7 +179,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#111',
     alignItems: 'center',
     justifyContent: 'center',
   },

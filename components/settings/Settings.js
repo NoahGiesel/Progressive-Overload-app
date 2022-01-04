@@ -15,24 +15,24 @@ export default function Settings( {navigation } ) {
       <ScrollView  > 
     <View style={styles.container}>
       <View style={styles.section}>
-        <Icon name="build-outline" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="build-outline" style={styles.icon} size={21} color="#999" /> 
         <Text style={styles.text}>General</Text>
       </View> 
 
       <View style={styles.divider}/> 
 
-      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#F0F0F0' : 'white' },styles.pressable]}  onPress={() => navigation.push("Privacy")}>
+      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#212121' : '#131313' },styles.pressable]}  onPress={() => navigation.push("Privacy")}>
         <Text style={styles.textNavigation}>Edit Profile</Text>
-        <Icon name="chevron-forward" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="chevron-forward" style={styles.icon} size={21} color="#999" /> 
       </Pressable>
 
       <View style={styles.switchView} onPress={() => navigation.push("Privacy")}>
         <Text style={styles.switchText}>Weight Unit</Text>
         <SwitchSelector  
           style={styles.switch} 
-          textColor={'#888'} 
-          buttonColor={'#878787'} 
-          backgroundColor={'#f1f1f1'}
+          textColor={'#fff'} 
+          buttonColor={'#3cb5b1'} 
+          backgroundColor={'#999'}
           borderRadius={18}
           fontSize={16}
           bold={true}
@@ -47,9 +47,9 @@ export default function Settings( {navigation } ) {
         <Text style={styles.switchText}>Height Unit</Text>
         <SwitchSelector  
           style={styles.switch} 
-          textColor={'#888'} 
-          buttonColor={'#878787'} 
-          backgroundColor={'#f1f1f1'}
+          textColor={'#fff'} 
+          buttonColor={'#3cb5b1'} 
+          backgroundColor={'#999'}
           borderRadius={18}
           fontSize={16}
           bold={true}
@@ -63,9 +63,9 @@ export default function Settings( {navigation } ) {
         <Text style={styles.switchText}>Time Unit</Text>
         <SwitchSelector  
           style={styles.switch} 
-          textColor={'#888'} 
-          buttonColor={'#878787'} 
-          backgroundColor={'#f1f1f1'}
+          textColor={'#fff'} 
+          buttonColor={'#3cb5b1'} 
+          backgroundColor={'#999'}
           borderRadius={18}
           fontSize={16}
           bold={true}
@@ -79,8 +79,8 @@ export default function Settings( {navigation } ) {
         <Text style={styles.switchText}>Keep screen on</Text>
         <Switch
           style={styles.toggleSwitch} 
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={KeepScreenOn ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: "#767577", true: "#3cb5b1" }}
+          thumbColor={KeepScreenOn ? "#fff" : "#fff"}
           ios_backgroundColor="#3e3e3e"
           onValueChange={() => setKeepScreenOn(prev => !prev)}
           value={KeepScreenOn}
@@ -88,47 +88,47 @@ export default function Settings( {navigation } ) {
       </View>
   
       <View style={styles.section}>
-        <Icon name="notifications-outline" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="notifications-outline" style={styles.icon} size={21} color="#999" /> 
         <Text style={styles.text}>Notification</Text>
       </View> 
 
       <View style={styles.divider}/> 
 
-      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#F0F0F0' : 'white' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
+      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#212121' : '#131313' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
         <Text style={styles.textNavigation}>App Notifications</Text>
-        <Icon name="chevron-forward" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="chevron-forward" style={styles.icon} size={21} color="#999" /> 
       </Pressable>
       
-      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#F0F0F0' : 'white' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
+      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#212121' : '#131313' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
         <Text style={styles.textNavigation}>Reminder</Text>
-        <Icon name="chevron-forward" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="chevron-forward" style={styles.icon} size={21} color="#999" /> 
       </Pressable>
  
       <View style={styles.section}>
-        <Icon name="exit-outline" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="exit-outline" style={styles.icon} size={21} color="#999" /> 
         <Text style={styles.text}>More</Text>
       </View>
 
       <View style={styles.divider}/> 
       
-      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#F0F0F0' : 'white' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
+      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#212121' : '#131313' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
         <Text style={styles.textNavigation}>Country</Text>
-        <Icon name="chevron-forward" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="chevron-forward" style={styles.icon} size={21} color="#999" /> 
       </Pressable>
 
-      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#F0F0F0' : 'white' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
+      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#212121' : '#131313' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
         <Text style={styles.textNavigation}>Language</Text>
-        <Icon name="chevron-forward" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="chevron-forward" style={styles.icon} size={21} color="#999" /> 
       </Pressable>
 
-      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#F0F0F0' : 'white' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
+      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#212121' : '#131313' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
         <Text style={styles.textNavigation}>Share</Text>
-        <Icon name="chevron-forward" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="chevron-forward" style={styles.icon} size={21} color="#999" /> 
       </Pressable>
 
-      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#F0F0F0' : 'white' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
+      <Pressable style={({ pressed }) => [ { backgroundColor: pressed ? '#212121' : '#131313' },styles.pressable]} onPress={() => navigation.push("Privacy")}>
         <Text style={styles.textNavigation}>Privacy</Text>
-        <Icon name="chevron-forward" style={styles.icon} size={21} color="#666" /> 
+        <Icon name="chevron-forward" style={styles.icon} size={21} color="#999" /> 
       </Pressable>
       <Pressable style={ styles.textButton } onPress={() => navigation.push("Privacy")}>
         <Text style={styles.textNavigation}>Delete Data</Text>
@@ -144,16 +144,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: height,
-    backgroundColor : "#fff",
+    backgroundColor : "#131313",
     //backgroundColor : "#0B0B19",
     alignItems: 'center', 
   },
   text : {
     fontSize: 21,
-    paddingVertical: 11, 
+    paddingVertical: 13, 
     marginHorizontal: 11,
     alignSelf: 'center',
-    color: "#333"
+    color: "#fff"
   },
   pressable: { 
     flexDirection: 'row',
@@ -167,20 +167,20 @@ const styles = StyleSheet.create({
   toggleSwitch :{
     flex : 1,
     flexDirection: 'row',
-    transform: [{ scaleX: 1.1 }, { scaleY: 1.1 }],
+    transform: [{ scaleX: 1.15 }, { scaleY: 1.1 }],
     marginHorizontal: 15, 
   },
   textNavigation: {
     width: width-55,
-    paddingVertical: 11, 
+    paddingVertical: 12, 
     paddingHorizontal: 5, 
     fontSize: 19,
-    color: "#555", 
+    color: "#fff", 
   },
   info : {  
     fontSize: 12,
     paddingTop: 50,   
-    color: "#555"
+    color: "#fff"
     
   },
   icon : {  
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     paddingVertical: 11, 
     paddingHorizontal: 20, 
     fontSize: 19,
-    color: "#555", 
+    color: "#fff", 
   }, 
   section : {
     width: width, 
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
   divider : { 
     height: 1,
     width: width - 30,
-    backgroundColor:  "#999",
+    backgroundColor:  "#fff",
     marginTop: 1,
     marginBottom: 7
   }
