@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
+import { SafeAreaView,findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
 //import Constants from 'expo-constants'
 // inside css  marginTop:  Constants.statusBarHeight 
  
@@ -30,11 +30,11 @@ const DATA = [
     icon: <Icon name="analytics-outline"   size={25} color="#fff" />,
     description: 'Statistics',
   },
-  {
-    id: 'comp3',
-    icon: <Icon name="calendar-outline"  size={25} color="#fff" /> ,
-    description: 'Calendar',
-  },
+ // {
+   // id: 'comp3',
+    //icon: <Icon name="calendar-outline"  size={25} color="#fff" /> ,
+    //description: 'Calendar',
+  //},
   {
     id: 'comp4',
     icon: <Icon name="moon-outline"   size={25} color="#fff" />,
@@ -59,7 +59,7 @@ const data  = DATA.map((i) => ({
 const mapOfComponents = {
   comp1: <Home />,
   comp2: <Statistics />,
-  comp3: <Calendar />,
+ // comp3: <Calendar />,
   comp4: <Sleep />,
   //comp5: <Settings />
   comp5: <SettingsNavigator /> 
@@ -118,6 +118,8 @@ const Tabs = ({data, scrollX , onItemPress}) => {
       })
     })
   }, []) 
+
+  
   return (
     <View ref={containerRef} style={{position: "absolute", bottom :  0 ,width }}>
       <View style={{justifyContent: "space-evenly", flex: 1, flexDirection: "row",backgroundColor:"black"}}>
@@ -147,7 +149,7 @@ export default function App() {
   }) 
   
   return (
-    <View style={styles.container}> 
+    <SafeAreaView style={styles.container}> 
       <StatusBar style="auto" />
       <Animated.FlatList
         data={DATA}
@@ -172,7 +174,7 @@ export default function App() {
         }} 
         />
       <Tabs scrollX={scrollX} data={data} onItemPress={onItemPress}/> 
-    </View>
+    </SafeAreaView>
   );
 }
 

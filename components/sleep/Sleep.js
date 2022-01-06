@@ -120,11 +120,11 @@ const styles = StyleSheet.create({
     //backgroundColor : "#fff", 
     backgroundColor: '#131313',
     alignItems: 'center',
-    marginTop:  Constants.statusBarHeight  
+    marginTop:  Constants.statusBarHeight  , 
+    marginTop: 35,
   },
   head : { 
-    width: width -30, 
-    marginTop: 35,
+    width: width -30,  
     flexDirection: "row",
     paddingVertical: 5
   },

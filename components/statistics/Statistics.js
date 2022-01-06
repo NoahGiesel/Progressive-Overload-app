@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback } from 'react';
-import { findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
+import { SafeAreaView,findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
  
 const {width, height} = Dimensions.get("screen");
  
@@ -8,9 +8,9 @@ export default function Statistics() {
   
 
   return (
-    <View style={styles.container}>
-        <Text>i'm Statistics lol </Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+        <Text style={{color: "white"}}>i'm Statistics lol </Text>
+    </SafeAreaView>
   );
 }
 
@@ -19,6 +19,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#131313',
     alignItems: 'center',
-    justifyContent: 'center',
   },
 });
