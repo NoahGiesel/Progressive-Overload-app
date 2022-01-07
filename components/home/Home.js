@@ -1,8 +1,36 @@
 import React, {useState, useEffect, useCallback } from 'react';
-import { findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
+import { findNodeHandle,StyleSheet,ScrollView, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
  
 const {width, height} = Dimensions.get("screen");
  
+
+/*
+
+   
+        <FlatList 
+          data={data}
+          keyExtractor={(item,index) => item.key}
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          decelerationRate="fast"
+          snapToInterval={tryToSee.FULL_SIZE}
+          renderItem={({item}) =>{
+            return (
+              <TouchableOpacity 
+              onPress={() => {}}
+              style={styles.itemContainer}
+              >
+                <Image 
+                  source={{uri: item.image}} 
+                  style={[StyleSheet.absoluteFillObject, { resizeMode: "cover"}]}
+                />
+
+              </TouchableOpacity>)
+          }}
+          />
+       
+*/
+
 const s = width * 0.68;
 const tryToSee = { 
   ITEM_WIDTH : s,
@@ -86,34 +114,38 @@ const data = [
 
 ]
  
-export default function Home() { 
-  
-
+export default function Home(props) {  
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>New Exercise </Text>
-        <FlatList 
-          style={{flexDirection: "row", width: width}}
-          data={data}
-          keyExtractor={(item,index) => item.key}
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          decelerationRate="fast"
-          snapToInterval={tryToSee.FULL_SIZE}
-          renderItem={({item}) =>{
-            return (
-              <TouchableOpacity 
-              onPress={() => {}}
-              style={styles.itemContainer}
-              >
-                <Image 
-                  source={{uri: item.image}} 
-                  style={[StyleSheet.absoluteFillObject, { resizeMode: "cover"}]}
-                />
+        <Text style={styles.title}>New Exercise </Text> 
+        <View  >
+          <ScrollView 
+            horizontal
+            onScrollBeginDrag={() => props.setFlatMove(true)  }
+            onMomentumScrollEnd={() => props.setFlatMove(false) } 
+            scrollEventThrottle={16}
+            decelerationRate="normal"
+          > 
+            {
+              data.map((item) => {
+                return(
+                  <TouchableOpacity 
+                    onPress={() => {}}
+                    style={styles.itemContainer}
+                    key={item.key}
+                    >
+                      <Image 
+                        source={{uri: item.image}} 
+                        style={[StyleSheet.absoluteFillObject, { resizeMode: "cover"}]}
+                      />
 
-              </TouchableOpacity>)
-          }}
-          />
+                  </TouchableOpacity>
+                ) 
+
+              })
+            }
+          </ScrollView>
+        </View>
         <Text style={styles.title}>History exercises</Text>
     </View>
   );

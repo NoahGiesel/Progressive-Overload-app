@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback } from 'react';
+import React, {useState, useEffect, useCallback ,useRef} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView,findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
 //import Constants from 'expo-constants'
@@ -18,7 +18,6 @@ const {width, height} = Dimensions.get("screen");
  
 //i have to store components inside objects in order to access them from renderItem 
  
-
 const DATA = [
   {
     id: 'comp1',
@@ -55,16 +54,7 @@ const data  = DATA.map((i) => ({
 }));
 
 
-// HERE I WILL INSERT ALL COMPONENTS (PAGES) I'M USING
-const mapOfComponents = {
-  comp1: <Home />,
-  comp2: <Statistics />,
- // comp3: <Calendar />,
-  comp4: <Sleep />,
-  //comp5: <Settings />
-  comp5: <SettingsNavigator /> 
-};
-
+ 
 
 
 //Indicator component used inside TABS component below
@@ -132,10 +122,23 @@ const Tabs = ({data, scrollX , onItemPress}) => {
   )
 }
 
+let iControl = false;  
+// HERE I WILL INSERT ALL COMPONENTS (PAGES) I'M USING
+ 
 
 
+const mapOfComponents = {
+  comp1: <Home setFlatMove={x =>iControl = x }/>,
+  comp2: <Statistics />,
+ // comp3: <Calendar />,
+  comp4: <Sleep />,
+  //comp5: <Settings />
+  comp5: <SettingsNavigator /> 
+};
+ 
 
-export default function App() { 
+export default function App( ) {  
+ 
   // beeing our app an animatedFlatlist we do have the slider, which we can track by scrollX  : https://www.youtube.com/watch?v=ZiSN9uik6OY
   //Animated.Value is not beeing changed when the component gets new props or gets rerendered
   const scrollX = React.useRef(new Animated.Value(0)).current;   
@@ -147,11 +150,13 @@ export default function App() {
     })
     //console.log(itemIndex)
   }) 
-  
+
+
   return (
     <SafeAreaView style={styles.container}> 
       <StatusBar style="auto" />
       <Animated.FlatList
+        scrollEnabled={iControl}
         data={DATA}
         ref={ref}
         keyExtractor={item => item.id}
@@ -165,15 +170,15 @@ export default function App() {
           [{nativeEvent: {contentOffset: {x:scrollX}}}],
           {useNativeDriver : false}
         )}
-          renderItem={({item}) =>{
-            return (
-              <View style={{width, height}}>
-                {mapOfComponents[item.id] }
-              </View>
-            )
+        renderItem={({item}) =>{
+          return (
+            <View style={{width, height}}>
+              {mapOfComponents[item.id] }
+            </View>
+          )
         }} 
         />
-      <Tabs scrollX={scrollX} data={data} onItemPress={onItemPress}/> 
+      <Tabs scrollX={scrollX} data={data} onItemPress={onItemPress}/>  
     </SafeAreaView>
   );
 }
