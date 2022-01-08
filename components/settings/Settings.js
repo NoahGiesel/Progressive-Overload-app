@@ -6,11 +6,8 @@ import SwitchSelector from 'react-native-switch-selector';
 
 const {width, height} = Dimensions.get("screen");
  
-export default function Settings( {navigation } ) {   
-
-  const [KeepScreenOn, setKeepScreenOn] = useState(false);
-
-
+export default function Settings( { navigation } ) {    
+  const [KeepScreenOn, setKeepScreenOn] = useState(false); 
   return (
       <ScrollView  > 
     <View style={styles.container}>

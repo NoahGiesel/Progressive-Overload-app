@@ -5,6 +5,7 @@ import { SafeAreaView,findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Di
 // inside css  marginTop:  Constants.statusBarHeight 
  
 import Home from "./components/home/Home"
+import HomeNavigator from "./routes/homeNavigator"
 import Statistics from "./components/statistics/Statistics"
 import Calendar from "./components/calendar/Calendar"
 import Sleep from "./components/sleep/Sleep"
@@ -122,22 +123,28 @@ const Tabs = ({data, scrollX , onItemPress}) => {
   )
 }
 
-let iControl = false;  
 // HERE I WILL INSERT ALL COMPONENTS (PAGES) I'M USING
- 
-
-
 const mapOfComponents = {
-  comp1: <Home setFlatMove={x =>iControl = x }/>,
+  comp1: <HomeNavigator  setFlatMove={x => {
+    console.log(x)
+    //if(x === 1) setListScroll(false)
+    //if(x === 0) setListScroll(true)
+  }}/>,
   comp2: <Statistics />,
- // comp3: <Calendar />,
+  // comp3: <Calendar />,
   comp4: <Sleep />,
   //comp5: <Settings />
   comp5: <SettingsNavigator /> 
 };
+
+
  
 
 export default function App( ) {  
+
+  const [ listScroll , setListScroll] = useState(false) 
+  
+  
  
   // beeing our app an animatedFlatlist we do have the slider, which we can track by scrollX  : https://www.youtube.com/watch?v=ZiSN9uik6OY
   //Animated.Value is not beeing changed when the component gets new props or gets rerendered
@@ -150,13 +157,15 @@ export default function App( ) {
     })
     //console.log(itemIndex)
   }) 
+ 
 
 
   return (
+
     <SafeAreaView style={styles.container}> 
       <StatusBar style="auto" />
       <Animated.FlatList
-        scrollEnabled={iControl}
+        scrollEnabled={false}
         data={DATA}
         ref={ref}
         keyExtractor={item => item.id}

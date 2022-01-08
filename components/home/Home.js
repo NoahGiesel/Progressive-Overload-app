@@ -1,12 +1,8 @@
 import React, {useState, useEffect, useCallback } from 'react';
-import { findNodeHandle,StyleSheet,ScrollView, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
- 
+import { TouchableWithoutFeedback  ,findNodeHandle,StyleSheet,ScrollView, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
 const {width, height} = Dimensions.get("screen");
- 
 
-/*
-
-   
+/* 
         <FlatList 
           data={data}
           keyExtractor={(item,index) => item.key}
@@ -27,8 +23,7 @@ const {width, height} = Dimensions.get("screen");
 
               </TouchableOpacity>)
           }}
-          />
-       
+          /> 
 */
 
 const s = width * 0.68;
@@ -114,38 +109,74 @@ const data = [
 
 ]
  
-export default function Home(props) {  
+
+export default function Home( {navigation }  ) { 
+  
+  const scrollX = React.useRef(new Animated.Value(0)).current;
+
+  const [getSpeed, setGetSpeed ]=  useState(0)
+
+  useEffect( () => {
+    //update props
+    //console.log(getSpeed)
+    //props.setFlatMove(getSpeed)
+  },[getSpeed])
+
+
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>New Exercise </Text> 
-        <View  >
-          <ScrollView 
-            horizontal
-            onScrollBeginDrag={() => props.setFlatMove(true)  }
-            onMomentumScrollEnd={() => props.setFlatMove(false) } 
-            scrollEventThrottle={16}
-            decelerationRate="normal"
-          > 
-            {
-              data.map((item) => {
-                return(
-                  <TouchableOpacity 
-                    onPress={() => {}}
-                    style={styles.itemContainer}
-                    key={item.key}
-                    >
-                      <Image 
-                        source={{uri: item.image}} 
-                        style={[StyleSheet.absoluteFillObject, { resizeMode: "cover"}]}
-                      />
+        <Text style={styles.title}>New Exercise </Text>    
+          <View> 
+            <Animated.ScrollView 
+                horizontal
+                onScrollBeginDrag={() => setGetSpeed(1)    }
+                onMomentumScrollEnd={() => setGetSpeed(0) } 
+                scrollEventThrottle={0}
+                decelerationRate="fast"
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{flexGrow: 1}} 
+                snapToInterval={tryToSee.FULL_SIZE}
+                onScroll={Animated.event(
+                  [{ nativeEvent : { contentOffset : { x :scrollX }}}],
+                  { useNativeDriver: true }
+                )}
+              > 
+                {
+                  data.map((item, index) => {
+                    const inputRange = [(index - 1) * tryToSee.FULL_SIZE, index * tryToSee.FULL_SIZE, (index + 1) * tryToSee.FULL_SIZE]
+                    const translateX = scrollX.interpolate({
+                      inputRange,
+                      outputRange : [ tryToSee.ITEM_WIDTH, 0 , -tryToSee.ITEM_WIDTH]
+                    });
+                    const scale = scrollX.interpolate({
+                      inputRange,
+                      outputRange: [1,1.15,1]
+                    })
+                    return(
+                      <TouchableOpacity 
+                        onPress={() => { navigation.push("Measure", { item: item })}}
+                        style={styles.itemContainer}
+                        key={item.key}
+                        >
+                            <View style={[StyleSheet.absoluteFillObject, { overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
+                              <Animated.Image 
+                                source={{uri: item.image}} 
+                                style={[StyleSheet.absoluteFillObject, { resizeMode: "cover", transform : [{scale}]}]}
+                              />
+                            </View>
+                            <Animated.Text style={[styles.location,{transform:[{translateX}]}]}>{item.location}</Animated.Text>
+                            <View style={styles.days}> 
+                              <Text style={styles.daysValue}>{item.numberOfDays}</Text>
+                              <Text style={styles.daysLabel}>days</Text>
+                            </View> 
+                      </TouchableOpacity>
+                    ) 
 
-                  </TouchableOpacity>
-                ) 
-
-              })
-            }
-          </ScrollView>
-        </View>
+                  })
+                }
+              </Animated.ScrollView>
+          </View>
+ 
         <Text style={styles.title}>History exercises</Text>
     </View>
   );
@@ -166,5 +197,37 @@ const styles = StyleSheet.create({
     width: tryToSee.ITEM_WIDTH,
     height: tryToSee.ITEM_HEIGHT,
     margin: tryToSee.SPACING, 
-  }
+  },
+  location : {
+    fontSize: 30,
+    color : 'white',
+    fontWeight: 'bold',
+    width:  tryToSee.ITEM_WIDTH * 0.8,
+    textTransform : 'uppercase',
+    position: 'absolute',
+    top: tryToSee.SPACING,
+    left: tryToSee.SPACING,
+  },
+  days : {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: 'tomato',
+    justifyContent : 'center',
+    alignItems : 'center',
+    bottom: tryToSee.SPACING,
+    left: tryToSee.SPACING,
+    position: 'absolute',
+  },
+  daysValue : {
+    fontWeight: 'bold',
+    color: '#fff',
+    fontSize: 20
+  },
+  daysLabel : {
+    fontWeight: 'bold',
+    
+    color: '#fff',
+    fontSize: 12
+  },
 });
