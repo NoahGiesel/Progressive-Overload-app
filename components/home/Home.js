@@ -1,6 +1,11 @@
 import React, {useState, useEffect, useCallback } from 'react';
 import { TouchableWithoutFeedback  ,findNodeHandle,StyleSheet,ScrollView, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
 const {width, height} = Dimensions.get("screen");
+ 
+import { SharedElement } from 'react-navigation-shared-element/build/v4';
+
+
+
 
 /* 
         <FlatList 
@@ -110,7 +115,7 @@ const data = [
 ]
  
 
-export default function Home( {navigation }  ) { 
+export default function Home( { navigation }  ) { 
   
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
@@ -158,13 +163,19 @@ export default function Home( {navigation }  ) {
                         style={styles.itemContainer}
                         key={item.key}
                         >
+                          <SharedElement id={`item.${item.id}.photo`} style={[StyleSheet.absoluteFillObject]}> 
                             <View style={[StyleSheet.absoluteFillObject, { overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
                               <Animated.Image 
                                 source={{uri: item.image}} 
                                 style={[StyleSheet.absoluteFillObject, { resizeMode: "cover", transform : [{scale}]}]}
                               />
                             </View>
+                          </SharedElement>
+                          
+                          <SharedElement id={`item.${item.key}.location`} >
                             <Animated.Text style={[styles.location,{transform:[{translateX}]}]}>{item.location}</Animated.Text>
+                          </SharedElement>
+
                             <View style={styles.days}> 
                               <Text style={styles.daysValue}>{item.numberOfDays}</Text>
                               <Text style={styles.daysLabel}>days</Text>

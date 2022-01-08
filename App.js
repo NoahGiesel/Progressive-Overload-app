@@ -160,8 +160,7 @@ export default function App( ) {
  
 
 
-  return (
-
+  return ( 
     <SafeAreaView style={styles.container}> 
       <StatusBar style="auto" />
       <Animated.FlatList
