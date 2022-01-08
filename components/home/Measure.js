@@ -1,6 +1,10 @@
 import React, {useState, useEffect, useCallback } from 'react';
 import { findNodeHandle ,StyleSheet, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
-import { SharedElement } from 'react-navigation-shared-element/build/v4';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { StackActions } from '@react-navigation/native';
+
+import { SharedElement } from 'react-navigation-shared-element';
+
 
 const {width, height} = Dimensions.get("screen");
 const s = width * 0.68;
@@ -12,8 +16,10 @@ const tryToSee = {
   FULL_SIZE: s + 12 * 2
 }
 
-export default function Measure( {navigation, route} )  { 
-    const  item  = navigation.getParam("item");
+export default function Measure( props, {navigation} )  { 
+    
+    const { item } = props.route.params;
+    
     return (
         <View style={styles.container}>
                 <SharedElement id={`item.${item.id}.photo`}  style={[StyleSheet.absoluteFillObject]}>
@@ -24,6 +30,14 @@ export default function Measure( {navigation, route} )  {
                         />
                     </View>   
                 </SharedElement>
+                {/* <TouchableOpacity onPress={() => navigation.goBack }> */}
+                    <Icon name="arrow-back-outline" 
+                        onPress={() => navigation.goBack() } 
+                        style={styles.icon} 
+                        size={21} 
+                        color="#000" 
+                    />
+                {/* </TouchableOpacity> */}
                 <SharedElement id={`item.${item.key}.location`} > 
                     <Text style={[styles.location]}>{item.location}</Text>
                 </SharedElement>
@@ -46,6 +60,10 @@ const styles = StyleSheet.create({
     top: tryToSee.SPACING * 2,
     left: tryToSee.SPACING * 2,
   },
+  icon : {
+      marginTop: 55,
+      marginLeft: 25
+  }
 });
 
 Measure.sharedElements = (route, otherRoute, showing) => {

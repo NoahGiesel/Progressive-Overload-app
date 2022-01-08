@@ -5,7 +5,7 @@ import { SafeAreaView,findNodeHandle,StyleSheet, TouchableOpacity,Text, View, Di
 // inside css  marginTop:  Constants.statusBarHeight 
  
 import Home from "./components/home/Home"
-import HomeNavigator from "./routes/homeNavigator"
+import HomeNavigatorUpgrade from "./routes/HomeNavigatorUpgrade"
 import Statistics from "./components/statistics/Statistics"
 import Calendar from "./components/calendar/Calendar"
 import Sleep from "./components/sleep/Sleep"
@@ -125,16 +125,17 @@ const Tabs = ({data, scrollX , onItemPress}) => {
 
 // HERE I WILL INSERT ALL COMPONENTS (PAGES) I'M USING
 const mapOfComponents = {
-  comp1: <HomeNavigator  setFlatMove={x => {
-    console.log(x)
+  comp1: <HomeNavigatorUpgrade  />,
+    // setFlatMove={x => {
+    // console.log(x)
     //if(x === 1) setListScroll(false)
     //if(x === 0) setListScroll(true)
-  }}/>,
+  // }} 
   comp2: <Statistics />,
   // comp3: <Calendar />,
   comp4: <Sleep />,
   //comp5: <Settings />
-  comp5: <SettingsNavigator /> 
+  // comp5: <SettingsNavigator /> 
 };
 
 

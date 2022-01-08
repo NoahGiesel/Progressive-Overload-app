@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useCallback } from 'react';
-import { TouchableWithoutFeedback  ,findNodeHandle,StyleSheet,ScrollView, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
+import { TouchableWithoutFeedback  ,StatusBar ,StyleSheet,ScrollView, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
 const {width, height} = Dimensions.get("screen");
  
-import { SharedElement } from 'react-navigation-shared-element/build/v4';
+import { SharedElement } from 'react-navigation-shared-element';
 
 
 
@@ -159,7 +159,7 @@ export default function Home( { navigation }  ) {
                     })
                     return(
                       <TouchableOpacity 
-                        onPress={() => { navigation.push("Measure", { item: item })}}
+                        onPress={() => { navigation.push("Measure", { item })}}
                         style={styles.itemContainer}
                         key={item.key}
                         >
@@ -172,10 +172,10 @@ export default function Home( { navigation }  ) {
                             </View>
                           </SharedElement>
                           
-                          <SharedElement id={`item.${item.key}.location`} >
+                          {/* <SharedElement id={`item.${item.key}.location`} > */}
                             <Animated.Text style={[styles.location,{transform:[{translateX}]}]}>{item.location}</Animated.Text>
-                          </SharedElement>
-
+                          {/* </SharedElement> */}
+                          
                             <View style={styles.days}> 
                               <Text style={styles.daysValue}>{item.numberOfDays}</Text>
                               <Text style={styles.daysLabel}>days</Text>
@@ -197,8 +197,9 @@ const styles = StyleSheet.create({
   container: { 
     flex: 1,
     backgroundColor: '#131313',
-    marginTop: 40,
+    marginTop: 0,
     paddingHorizontal: 10,
+    marginTop:StatusBar.currentHeight
   },
   title: { 
     color : "#fff",
