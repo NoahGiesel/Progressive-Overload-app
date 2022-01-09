@@ -130,7 +130,7 @@ export default function Home( { navigation }  ) {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>New Exercise </Text>    
+        {/* <Text style={styles.title}> List</Text>     */}
           <View> 
             <Animated.ScrollView 
                 horizontal
@@ -172,9 +172,9 @@ export default function Home( { navigation }  ) {
                             </View>
                           </SharedElement>
                           
-                          {/* <SharedElement id={`item.${item.key}.location`} > */}
+                          <SharedElement id={`item.${item.key}.location`} >
                             <Animated.Text style={[styles.location,{transform:[{translateX}]}]}>{item.location}</Animated.Text>
-                          {/* </SharedElement> */}
+                          </SharedElement>
                           
                             <View style={styles.days}> 
                               <Text style={styles.daysValue}>{item.numberOfDays}</Text>
@@ -188,7 +188,7 @@ export default function Home( { navigation }  ) {
               </Animated.ScrollView>
           </View>
  
-        <Text style={styles.title}>History exercises</Text>
+        {/* <Text style={styles.title}>asd</Text> */}
     </View>
   );
 }

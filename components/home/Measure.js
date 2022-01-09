@@ -16,28 +16,26 @@ const tryToSee = {
   FULL_SIZE: s + 12 * 2
 }
 
-export default function Measure( props, {navigation} )  { 
+export default function Measure( props  )  { 
     
     const { item } = props.route.params;
-    
+    // console.log( props )
     return (
-        <View style={styles.container}>
-                <SharedElement id={`item.${item.id}.photo`}  style={[StyleSheet.absoluteFillObject]}>
-                    <View style={[StyleSheet.absoluteFillObject, { borderRadius: 0}]}>
+        <View style={ [styles.container,{backgroundColor : `${item.color}`} ] }>
+                <SharedElement id={`item.${item.id}.photo`}  style={[{ height: 450}, StyleSheet.absoluteFillObject]}>
+                    <View style={[StyleSheet.absoluteFillObject, { borderRadius:  0 }]}>
                         <Image 
                             source={{uri: item.image}} 
                             style={[StyleSheet.absoluteFillObject, { resizeMode: "cover" }]}
                         />
                     </View>   
                 </SharedElement>
-                {/* <TouchableOpacity onPress={() => navigation.goBack }> */}
                     <Icon name="arrow-back-outline" 
-                        onPress={() => navigation.goBack() } 
+                        onPress={() => { props.navigation.goBack()}} 
                         style={styles.icon} 
                         size={21} 
                         color="#000" 
                     />
-                {/* </TouchableOpacity> */}
                 <SharedElement id={`item.${item.key}.location`} > 
                     <Text style={[styles.location]}>{item.location}</Text>
                 </SharedElement>
@@ -48,7 +46,7 @@ export default function Measure( props, {navigation} )  {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff', 
+     
   },
   location : {
     fontSize: 30,

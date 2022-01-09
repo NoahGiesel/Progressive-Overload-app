@@ -5,10 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from "../components/home/Home"
 import Measure from "../components/home/Measure"
-import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 
-import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const Stack = createStackNavigator();
@@ -23,21 +21,14 @@ export default function  HomeNavigatorUpgrade  ()   {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Measure" component={Measure} 
           options={()=>({
-            gestureEnabled : false,
-            header: ({ goBack }) => ({
-              left: (<Icon name="arrow-back-outline" 
-              onPress={ () => { goBack() } }  
-              size={21} 
-              color="#000" 
-          />)
-          }),
+            gestureEnabled : true, 
             transitionSpec : {
-              open : {animation:'timing', config : {duration:200}},
+              open : {animation:'timing', config : {duration: 200}},
               close : {animation:'timing', config : {duration:200}}
             }})}
           sharedElements={(route, otherRoute, showing) => {
             const { item } = route.params;
-            return [`item.${item.id}.photo` ];
+            return [`item.${item.id}.photo`,`item.${item.key}.location` ];
           }}/>
       </Stack.Navigator>
     </NavigationContainer>
