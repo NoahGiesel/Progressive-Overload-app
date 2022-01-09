@@ -10,7 +10,7 @@ import Statistics from "./components/statistics/Statistics"
 import Calendar from "./components/calendar/Calendar"
 import Sleep from "./components/sleep/Sleep"
 import Settings from "./components/settings/Settings"
-import SettingsNavigator from "./routes/settingsNavigator"
+import SettingsNavigator from "./routes/SettingsNavigator"
 import Icon from 'react-native-vector-icons/Ionicons';
 import { globalStyle } from './styles/global';
 
@@ -54,10 +54,7 @@ const data  = DATA.map((i) => ({
   ref: React.createRef()
 }));
 
-
  
-
-
 //Indicator component used inside TABS component below
 
 const Indicator = ({measures, scrollX}) => { 
@@ -73,8 +70,7 @@ const Indicator = ({measures, scrollX}) => {
   return (
     <Animated.View style={{position:"absolute",  backgroundColor: "white", height: 4,width: indicatorWidth ,left:0, transform: [ {translateX} ] , bottom: 0 }} ></Animated.View>
   )
-}
-
+} 
 
  //This is tabs component used below  ( menu ) -> can be extracted into new component for better project structure
 
@@ -91,8 +87,7 @@ const Indicator = ({measures, scrollX}) => {
     </TouchableOpacity>
   )
 })
-
-
+ 
 const Tabs = ({data, scrollX , onItemPress}) => {
   const [measures, setMeasures] = React.useState([])
   const containerRef = React.useRef() 
@@ -108,9 +103,7 @@ const Tabs = ({data, scrollX , onItemPress}) => {
         }
       })
     })
-  }, []) 
-
-  
+  }, [])   
   return (
     <View ref={containerRef} style={{position: "absolute", bottom :  0 ,width }}>
       <View style={{justifyContent: "space-evenly", flex: 1, flexDirection: "row",backgroundColor:"black"}}>
@@ -135,17 +128,15 @@ const mapOfComponents = {
   // comp3: <Calendar />,
   comp4: <Sleep />,
   //comp5: <Settings />
-  // comp5: <SettingsNavigator /> 
+  comp5: <SettingsNavigator /> 
 };
-
-
+ 
  
 
 export default function App( ) {  
 
   const [ listScroll , setListScroll] = useState(false) 
-  
-  
+   
  
   // beeing our app an animatedFlatlist we do have the slider, which we can track by scrollX  : https://www.youtube.com/watch?v=ZiSN9uik6OY
   //Animated.Value is not beeing changed when the component gets new props or gets rerendered

@@ -6,13 +6,13 @@ import SwitchSelector from 'react-native-switch-selector';
 
 const {width, height} = Dimensions.get("screen");
  
-export default function Settings(   ) {    
+export default function Settings( { navigation }   ) {    
 // export default function Settings( { navigation } ) {    
   const [KeepScreenOn, setKeepScreenOn] = useState(false); 
   return (
       <ScrollView  > 
     <View style={styles.container}>
-      {/* <View style={styles.section}>
+      <View style={styles.section}>
         <Icon name="build-outline" style={styles.icon} size={21} color="#999" /> 
         <Text style={styles.text}>General</Text>
       </View> 
@@ -57,9 +57,9 @@ export default function Settings(   ) {
           initial={0} onPress={value => console.log(`Call onPress with value: ${value}`)} 
         />
       </View>
-      <View style={styles.switchView} onPress={() => navigation.push("Privacy")}> */}
+      <View style={styles.switchView} onPress={() => navigation.push("Privacy")}>
         <Text style={styles.switchText}>Time Unit</Text>
-        {/* <SwitchSelector  
+        <SwitchSelector  
           style={styles.switch} 
           textColor={'#fff'} 
           buttonColor={'#3cb5b1'} 
@@ -132,7 +132,7 @@ export default function Settings(   ) {
         <Text style={styles.textNavigation}>Delete Data</Text>
       </Pressable>
  
-      <Text  style={styles.info} >Version 1.0 </Text>  */}
+      <Text  style={styles.info} >Version 1.0 </Text> 
     </View>
       </ScrollView>
   );

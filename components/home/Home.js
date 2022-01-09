@@ -6,31 +6,6 @@ import { SharedElement } from 'react-navigation-shared-element';
 
 
 
-
-/* 
-        <FlatList 
-          data={data}
-          keyExtractor={(item,index) => item.key}
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          decelerationRate="fast"
-          snapToInterval={tryToSee.FULL_SIZE}
-          renderItem={({item}) =>{
-            return (
-              <TouchableOpacity 
-              onPress={() => {}}
-              style={styles.itemContainer}
-              >
-                <Image 
-                  source={{uri: item.image}} 
-                  style={[StyleSheet.absoluteFillObject, { resizeMode: "cover"}]}
-                />
-
-              </TouchableOpacity>)
-          }}
-          /> 
-*/
-
 const s = width * 0.68;
 const tryToSee = { 
   ITEM_WIDTH : s,
@@ -130,17 +105,16 @@ export default function Home( { navigation }  ) {
 
   return (
     <View style={styles.container}>
-        {/* <Text style={styles.title}> List</Text>     */}
+        <Text style={styles.title}> List</Text>    
           <View> 
             <Animated.ScrollView 
                 horizontal
-                onScrollBeginDrag={() => setGetSpeed(1)    }
+                onScrollBeginDrag={() => setGetSpeed(1) }
                 onMomentumScrollEnd={() => setGetSpeed(0) } 
                 scrollEventThrottle={0}
-                decelerationRate="fast"
+                decelerationRate="normal"
                 showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{flexGrow: 1}} 
-                snapToInterval={tryToSee.FULL_SIZE}
+                contentContainerStyle={{flexGrow: 1}}  
                 onScroll={Animated.event(
                   [{ nativeEvent : { contentOffset : { x :scrollX }}}],
                   { useNativeDriver: true }
@@ -188,7 +162,7 @@ export default function Home( { navigation }  ) {
               </Animated.ScrollView>
           </View>
  
-        {/* <Text style={styles.title}>asd</Text> */}
+        <Text style={styles.title}>asd</Text>
     </View>
   );
 }
