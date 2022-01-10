@@ -105,7 +105,7 @@ export default function Home( { navigation }  ) {
  
   return (
     <View style={styles.container}>
-        <Text style={styles.title}> List</Text>    
+        <Text style={styles.title}> Workouts</Text>    
           <View> 
             <Animated.ScrollView 
                 horizontal
@@ -120,6 +120,13 @@ export default function Home( { navigation }  ) {
                   { useNativeDriver: true }
                 )}
               > 
+              {/* <View style={ { justifyContent: "center"} } >
+                <Icon name="add-outline"  
+                    style={styles.add} 
+                    size={80} 
+                    color="#fff" 
+                />
+              </View> */}
                 {
                   data.map((item, index) => {
                     const inputRange = [(index - 1) * tryToSee.FULL_SIZE, index * tryToSee.FULL_SIZE, (index + 1) * tryToSee.FULL_SIZE]
@@ -138,18 +145,21 @@ export default function Home( { navigation }  ) {
                         key={item.key}
                         >
                           <SharedElement id={`item.${item.id}.photo`} style={[StyleSheet.absoluteFillObject]}> 
-                            <View style={[StyleSheet.absoluteFillObject, { backgroundColor:`${item.color}` ,overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
+                            <View style={[StyleSheet.absoluteFillObject, { flexDirection: "row",backgroundColor:`${item.color}` ,overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
                               {/* <Animated.Image 
                                 source={{uri: item.image}} 
                                 // style={[StyleSheet.absoluteFillObject, { resizeMode: "cover", transform : [{scale}]}]}
                                 style={[{ height: 100 ,resizeMode: "cover", transform : [{scale}]}]}
                               /> */}
                               <Icon name="barbell-outline"  
-                                  style={styles.icon} 
-                                  size={100} 
-                                  color="#333" 
+                                style={styles.icon} 
+                                size={100} 
+                                color="#333" 
                               />
-                              <Text style={{color : "#fff"}}>{ item.location }</Text>
+                              <View>
+                                <Text style={{color : "#fff"}}>{ item.location }</Text>
+
+                              </View>
                             </View>
                           </SharedElement> 
                           <SharedElement id={`item.${item.key}.location`} >
@@ -164,8 +174,9 @@ export default function Home( { navigation }  ) {
                   })
                 }
               </Animated.ScrollView>
+              <Text style={styles.title}>Your History</Text>
           </View> 
-        <Text style={styles.title}>asd</Text>
+        
     </View>
   );
 }
@@ -173,19 +184,28 @@ export default function Home( { navigation }  ) {
 const styles = StyleSheet.create({
   container: { 
     flex: 1,
-    backgroundColor: '#131313',
+    // backgroundColor: '#131313',
+    backgroundColor: '#262C40',
     marginTop: 0,
     paddingHorizontal: 10,
     marginTop:StatusBar.currentHeight
   },
+  add : {
+    backgroundColor: "#D3D3D3",
+    marginHorizontal: 10,
+    borderRadius: 20,
+  },
   title: { 
     color : "#fff",
-    fontSize: 20
+    fontSize: 35,
+    marginTop: 20,
+    marginVertical: 10
   },
   itemContainer: {
-    width: tryToSee.ITEM_WIDTH  - 20,
-    height: 225,
+    width: tryToSee.ITEM_WIDTH ,
+    height: 240,
     margin: tryToSee.SPACING, 
+    overflow: "hidden"
   },
   location : {
     fontSize: 30,
