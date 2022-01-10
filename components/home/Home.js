@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useCallback } from 'react';
 import { TouchableWithoutFeedback  ,StatusBar ,StyleSheet,ScrollView, TouchableOpacity,Text, View, Dimensions, Image, FlatList, Animated } from 'react-native';
 const {width, height} = Dimensions.get("screen");
- 
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import { SharedElement } from 'react-navigation-shared-element';
 
 
@@ -101,8 +102,7 @@ export default function Home( { navigation }  ) {
     //console.log(getSpeed)
     //props.setFlatMove(getSpeed)
   },[getSpeed])
-
-
+ 
   return (
     <View style={styles.container}>
         <Text style={styles.title}> List</Text>    
@@ -138,30 +138,33 @@ export default function Home( { navigation }  ) {
                         key={item.key}
                         >
                           <SharedElement id={`item.${item.id}.photo`} style={[StyleSheet.absoluteFillObject]}> 
-                            <View style={[StyleSheet.absoluteFillObject, { overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
-                              <Animated.Image 
+                            <View style={[StyleSheet.absoluteFillObject, { backgroundColor:`${item.color}` ,overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
+                              {/* <Animated.Image 
                                 source={{uri: item.image}} 
-                                style={[StyleSheet.absoluteFillObject, { resizeMode: "cover", transform : [{scale}]}]}
+                                // style={[StyleSheet.absoluteFillObject, { resizeMode: "cover", transform : [{scale}]}]}
+                                style={[{ height: 100 ,resizeMode: "cover", transform : [{scale}]}]}
+                              /> */}
+                              <Icon name="barbell-outline"  
+                                  style={styles.icon} 
+                                  size={100} 
+                                  color="#333" 
                               />
+                              <Text style={{color : "#fff"}}>{ item.location }</Text>
                             </View>
-                          </SharedElement>
-                          
+                          </SharedElement> 
                           <SharedElement id={`item.${item.key}.location`} >
                             <Animated.Text style={[styles.location,{transform:[{translateX}]}]}>{item.location}</Animated.Text>
-                          </SharedElement>
-                          
-                            <View style={styles.days}> 
+                          </SharedElement> 
+                            {/* <View style={styles.days}> 
                               <Text style={styles.daysValue}>{item.numberOfDays}</Text>
                               <Text style={styles.daysLabel}>days</Text>
-                            </View> 
+                            </View>  */}
                       </TouchableOpacity>
-                    ) 
-
+                    )  
                   })
                 }
               </Animated.ScrollView>
-          </View>
- 
+          </View> 
         <Text style={styles.title}>asd</Text>
     </View>
   );
@@ -180,8 +183,8 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   itemContainer: {
-    width: tryToSee.ITEM_WIDTH,
-    height: tryToSee.ITEM_HEIGHT,
+    width: tryToSee.ITEM_WIDTH  - 20,
+    height: 225,
     margin: tryToSee.SPACING, 
   },
   location : {
@@ -193,6 +196,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: tryToSee.SPACING,
     left: tryToSee.SPACING,
+  },
+  icon : {
+    alignSelf: "center",
+    marginVertical: 5
   },
   days : {
     width: 52,
