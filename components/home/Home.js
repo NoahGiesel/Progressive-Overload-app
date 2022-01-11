@@ -137,6 +137,90 @@ const data = [
     weight: 20,
     // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
+  {
+    key: "11",
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FFE5D9",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    key: "12",
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FFE5D9",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    key: "13",
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FFE5D9",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    key: "14",
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FFE5D9",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    key: "15",
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FFE5D9",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    key: "16",
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FFE5D9",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
+  {
+    key: "17",
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FFE5D9",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  },
 
 ]
 
@@ -227,8 +311,26 @@ export default function Home( { navigation }  ) {
                 }
               </Animated.ScrollView>
               <Text style={styles.title}>Your History</Text>
-          </View> 
-        
+              <FlatList 
+                data={data}
+                keyExtractor={ item => item.key }
+                contentContainerStyle={{
+                  padding: 10 ,
+                  paddingBottom:500
+                }}
+                renderItem={({item, index}) => { 
+                  return <View style={{flexDirection: 'row', paddingHorizontal: 15 ,paddingVertical: 15,marginVertical : 15, borderRadius: 10 , backgroundColor: "#999", shadowColor: '#000', shadowOffset :{width: 0, height: 10},shadowOpacity: .5 ,shadowRadius: 20}}>
+
+                    <Icon name="barbell-outline" size={60} color="#fff" />
+                    <View  style={{flexDirection: 'row', alignSelf: 'center'}}>
+                      <Text style={{fontSize: 22, marginHorizontal: 10 }} >Rep: {item.rep}</Text>
+                      <Text  style={{fontSize: 22, marginHorizontal: 10 }} >Set: {item.set}</Text>
+                      <Text  style={{fontSize: 22, marginHorizontal: 10 }} >KG: {item.weight}</Text>
+                    </View>
+                  </View>
+                }}  
+              />
+          </View>  
     </View>
   );
 }
@@ -249,7 +351,7 @@ const styles = StyleSheet.create({
   },
   title: { 
     color : "#fff",
-    fontSize: 35,
+    fontSize: 30,
     marginTop: 20,
     marginVertical: 10
   },
