@@ -19,77 +19,127 @@ const tryToSee = {
 const data = [ 
   {
     key: "1",
-    location: "Italy",
-    numberOfDays: 9,
-    image :"https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=683&q=80",
-    color: "#D3BCC0"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#D3BCC0",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=683&q=80",
   },
   {
     key: "2",
-    location: "France",
-    numberOfDays: 21,
-    image :"https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-    color: "#FAF3DD"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FAF3DD",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
   {
     key: "3",
-    location: "Florida",
-    numberOfDays: 2,
-    image :"https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-    color: "#8DA7BE"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#8DA7BE",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
   {
     key: "4",
-    location: "Germany",
-    numberOfDays: 7,
-    image :"https://images.unsplash.com/photo-1534313314376-a72289b6181e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-    color: "#95BF74"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#95BF74",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1534313314376-a72289b6181e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
   {
     key: "5",
-    location: "Spain",
-    numberOfDays: 55,
-    image :"https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-    color: "#AF8D86"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#AF8D86",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
   },
   {
     key: "6",
-    location: "Great Britain",
-    numberOfDays: 47,
-    image :"https://images.unsplash.com/photo-1526659666037-96f63c2ec0ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
-    color: "#2660A4"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#2660A4",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1526659666037-96f63c2ec0ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
   },
   {
     key: "7",
-    location: "Russia",
-    numberOfDays: 81,
-    image :"https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80",
-    color: "#F19953"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#F19953",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80",
   },
   {
     key: "8",
-    location: "Marocco",
-    numberOfDays: 13,
-    image :"https://images.unsplash.com/photo-1575193732883-6fd4bdc71014?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-    color: "#C47335"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#C47335",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1575193732883-6fd4bdc71014?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
   },
   {
     key: "9",
-    location: "Portugal",
-    numberOfDays: 768,
-    image :"https://images.unsplash.com/photo-1529699074188-d1fb8244c4ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-    color: "#E8D6CB"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#E8D6CB",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1529699074188-d1fb8244c4ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
   },
   {
     key: "10",
-    location: "America",
-    numberOfDays: 44,
-    image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-    color: "#FFE5D9"
+    name: "Biceps curl",
+    type: "Dumbbell",
+    date: ["01-06-2021"],
+    repetition: 9,
+    color: "#FFE5D9",
+    set: 2,
+    rep: 10,
+    weight: 20,
+    // image :"https://images.unsplash.com/photo-1494449880320-18d3dae5d16e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
 
 ]
- 
+
 
 export default function Home( { navigation }  ) { 
   
@@ -145,7 +195,7 @@ export default function Home( { navigation }  ) {
                         key={item.key}
                         >
                           <SharedElement id={`item.${item.id}.photo`} style={[StyleSheet.absoluteFillObject]}> 
-                            <View style={[StyleSheet.absoluteFillObject, { flexDirection: "row",backgroundColor:`${item.color}` ,overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
+                            <View style={[StyleSheet.absoluteFillObject, { paddingHorizontal: 11 ,flexDirection: "row",backgroundColor:`${item.color}` ,overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
                               {/* <Animated.Image 
                                 source={{uri: item.image}} 
                                 // style={[StyleSheet.absoluteFillObject, { resizeMode: "cover", transform : [{scale}]}]}
@@ -156,11 +206,13 @@ export default function Home( { navigation }  ) {
                                 size={100} 
                                 color="#333" 
                               />
-                              <View>
-                                <Text style={{color : "#fff"}}>{ item.location }</Text>
-
+                              <View style={{ paddingTop: 25, paddingHorizontal: 15}}>
+                                <Text style={{color : "#fff", marginVertical: 3, fontSize: 25}}>{ item.name }</Text>
+                                <Text style={{color : "#fff", fontSize: 18}}>Last : 3x12, 19kg</Text>
+                                <Text style={{color : "#fff", fontSize: 18}}>Last : 3x12, 19kg</Text>
+                                <Text style={{color : "#f9f9f9", fontSize: 15}}>last time: { item.date[0] }</Text>
                               </View>
-                            </View>
+                            </View> 
                           </SharedElement> 
                           <SharedElement id={`item.${item.key}.location`} >
                             <Animated.Text style={[styles.location,{transform:[{translateX}]}]}>{item.location}</Animated.Text>
@@ -202,8 +254,8 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   itemContainer: {
-    width: tryToSee.ITEM_WIDTH ,
-    height: 240,
+    width: tryToSee.ITEM_WIDTH - 10 ,
+    height: 200,
     margin: tryToSee.SPACING, 
     overflow: "hidden"
   },

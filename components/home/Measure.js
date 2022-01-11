@@ -26,7 +26,7 @@ export default function Measure( props  )  {
                     <View style={[StyleSheet.absoluteFillObject, { borderRadius:  0 }]}>
                         <Image 
                             source={{uri: item.image}} 
-                            style={[StyleSheet.absoluteFillObject, { resizeMode: "cover" }]}
+                            style={[StyleSheet.absoluteFillObject, { resizeMode: "cover"  }]}
                         />
                     </View>   
                 </SharedElement>
