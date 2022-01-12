@@ -228,6 +228,7 @@ const data = [
 export default function Home( { navigation }  ) { 
   
   const scrollX = React.useRef(new Animated.Value(0)).current;
+  const scrollY = React.useRef(new Animated.Value(0)).current;
 
   const [getSpeed, setGetSpeed ]=  useState(0)
 
@@ -311,23 +312,49 @@ export default function Home( { navigation }  ) {
                 }
               </Animated.ScrollView>
               <Text style={styles.title}>Your History</Text>
-              <FlatList 
+              <Animated.FlatList 
                 data={data}
+                onScroll={Animated.event(
+                  [{ nativeEvent : { contentOffset : {y : scrollY}}}],
+                  { useNativeDriver: true }
+                )}
                 keyExtractor={ item => item.key }
                 contentContainerStyle={{
                   padding: 10 ,
                   paddingBottom:500
                 }}
                 renderItem={({item, index}) => { 
-                  return <View style={{flexDirection: 'row', paddingHorizontal: 15 ,paddingVertical: 15,marginVertical : 15, borderRadius: 10 , backgroundColor: "#999", shadowColor: '#000', shadowOffset :{width: 0, height: 10},shadowOpacity: .5 ,shadowRadius: 20}}>
+                  const inputRange = [
+                    -1, 
+                    0,
+                    100*index, // where to start the animation 
+                    100*(index + 10 ) // when the animation will end, (when next item starts animation)
+                  ]
 
+                  const opacityInputRange = [
+                    -1, 
+                    0,
+                    100*index, // where to start the animation 
+                    100*(index +1) // when the animation will end, (when next item starts animation)
+                  ]
+
+                  const scale = scrollY.interpolate({
+                    inputRange,
+                    outputRange: [1,1,1,0]
+                  })
+
+                  const opacity = scrollY.interpolate({
+                    inputRange: opacityInputRange,
+                    outputRange: [1,1,1,0]
+                  })
+                  return <Animated.View style={{height: 100,opacity ,transform: [{scale}] ,flexDirection: 'row', paddingHorizontal: 15 ,paddingVertical: 15,marginVertical : 15, borderRadius: 10 , backgroundColor: "#999", shadowColor: '#000', shadowOffset :{width: 0, height: 10},shadowOpacity: .5 ,shadowRadius: 20}}>
                     <Icon name="barbell-outline" size={60} color="#fff" />
                     <View  style={{flexDirection: 'row', alignSelf: 'center'}}>
                       <Text style={{fontSize: 22, marginHorizontal: 10 }} >Rep: {item.rep}</Text>
                       <Text  style={{fontSize: 22, marginHorizontal: 10 }} >Set: {item.set}</Text>
                       <Text  style={{fontSize: 22, marginHorizontal: 10 }} >KG: {item.weight}</Text>
                     </View>
-                  </View>
+                  </Animated.View>
                 }}  
               />
           </View>  
