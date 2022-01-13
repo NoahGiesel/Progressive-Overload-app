@@ -16,6 +16,9 @@ const tryToSee = {
   FULL_SIZE: s + 12 * 2
 }
 
+const bodyGroups = ["ALL","SHOULDER","ARM","CHEST", "ABS", "LEG","BACK", "CUSTOM"];
+
+
 const data = [ 
   {
     key: "1",
@@ -242,6 +245,29 @@ export default function Home( { navigation }  ) {
     <View style={styles.container}>
         <Text style={styles.title}> Workouts</Text>    
           <View> 
+
+          <Animated.ScrollView 
+                horizontal
+                onScrollBeginDrag={() => setGetSpeed(1) }
+                onMomentumScrollEnd={() => setGetSpeed(0) } 
+                decelerationRate="normal"
+                showsHorizontalScrollIndicator={false} 
+              > 
+                {
+                  bodyGroups.map((item, index) => {
+                    return(
+                      <TouchableOpacity 
+                        onPress={() => { console.log("i filter for " + item)}}
+                        key={index}
+                      >
+                        <View style={styles.bodyGroup}>
+                          <Text style={{  fontSize: 16, fontWeight: "bold",borderRadius: 10 ,marginHorizontal: 10, backgroundColor: "#fff" ,color: "#555", paddingVertical: 13, paddingHorizontal: 22}}>{item}</Text> 
+                        </View> 
+                      </TouchableOpacity>
+                    )  
+                  })
+                }
+              </Animated.ScrollView>  
             <Animated.ScrollView 
                 horizontal
                 onScrollBeginDrag={() => setGetSpeed(1) }
@@ -312,7 +338,7 @@ export default function Home( { navigation }  ) {
                 }
               </Animated.ScrollView>
               <Text style={styles.title}>Your History</Text>
-              <Animated.FlatList 
+              {/* <Animated.FlatList 
                 data={data}
                 onScroll={Animated.event(
                   [{ nativeEvent : { contentOffset : {y : scrollY}}}],
@@ -356,7 +382,7 @@ export default function Home( { navigation }  ) {
                     </View>
                   </Animated.View>
                 }}  
-              />
+              /> */}
           </View>  
     </View>
   );
@@ -365,8 +391,8 @@ export default function Home( { navigation }  ) {
 const styles = StyleSheet.create({
   container: { 
     flex: 1,
-    // backgroundColor: '#131313',
-    backgroundColor: '#262C40',
+    backgroundColor: '#232323',
+    // backgroundColor: '#262C40',
     marginTop: 0,
     paddingHorizontal: 10,
     marginTop:StatusBar.currentHeight
@@ -375,6 +401,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#D3D3D3",
     marginHorizontal: 10,
     borderRadius: 20,
+  },
+  bodyGroup: {
+    marginVertical: 20,
+    alignItems: "center"     
   },
   title: { 
     color : "#fff",
