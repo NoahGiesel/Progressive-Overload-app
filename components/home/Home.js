@@ -7,6 +7,7 @@ import { SharedElement } from 'react-navigation-shared-element';
 
 
 
+
 const s = width * 0.68;
 const tryToSee = { 
   ITEM_WIDTH : s,
@@ -17,8 +18,6 @@ const tryToSee = {
 }
 
 const bodyGroups = ["ALL","SHOULDER","ARM","CHEST", "ABS", "LEG","BACK", "CUSTOM"];
-
-
 const data = [ 
   {
     key: "1",
@@ -228,50 +227,54 @@ const data = [
 ]
 
 
+function RenderFilter(props) {
+  return (
+    <Animated.ScrollView 
+        horizontal
+        decelerationRate="normal"
+        showsHorizontalScrollIndicator={false} 
+      > 
+        {
+          bodyGroups.map((item, index) => { 
+            return(
+              <TouchableOpacity 
+                onPress={() =>  props.filterSelect(item) }
+                key={index}
+              >
+                <View style={styles.bodyGroup}>
+                  <Text style={[ ( props.activeFilter=== item) ? {backgroundColor: "#3ACEB1", borderColor: "#3ACEB1"} : {backgroundColor: "#fff", borderColor: "#fff"} ,{ borderWidth: 1 ,fontSize: 16, fontWeight: "bold",borderRadius: 10 ,marginHorizontal: 10, color: "#555", paddingVertical: 13, paddingHorizontal: 22}]}>
+                    {item}
+                  </Text> 
+                </View> 
+              </TouchableOpacity>
+            )  
+        })
+        }
+      </Animated.ScrollView>  
+  )
+}
+
+
+
 export default function Home( { navigation }  ) { 
   
+  const [activeFilter , setActiveFilter] = useState("ALL");
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
-  const [getSpeed, setGetSpeed ]=  useState(0)
-
-  useEffect( () => {
-    //update props
-    //console.log(getSpeed)
-    //props.setFlatMove(getSpeed)
-  },[getSpeed])
+  const filterSelect = (item) => {
+    setActiveFilter(i => i = item);
+  }
  
   return (
     <View style={styles.container}>
         <Text style={styles.title}> Workouts</Text>    
-          <View> 
+          <View>  
 
-          <Animated.ScrollView 
-                horizontal
-                onScrollBeginDrag={() => setGetSpeed(1) }
-                onMomentumScrollEnd={() => setGetSpeed(0) } 
-                decelerationRate="normal"
-                showsHorizontalScrollIndicator={false} 
-              > 
-                {
-                  bodyGroups.map((item, index) => {
-                    return(
-                      <TouchableOpacity 
-                        onPress={() => { console.log("i filter for " + item)}}
-                        key={index}
-                      >
-                        <View style={styles.bodyGroup}>
-                          <Text style={{  fontSize: 16, fontWeight: "bold",borderRadius: 10 ,marginHorizontal: 10, backgroundColor: "#fff" ,color: "#555", paddingVertical: 13, paddingHorizontal: 22}}>{item}</Text> 
-                        </View> 
-                      </TouchableOpacity>
-                    )  
-                  })
-                }
-              </Animated.ScrollView>  
+           <RenderFilter activeFilter={activeFilter} filterSelect={(item) => filterSelect(item)} /> 
+
             <Animated.ScrollView 
                 horizontal
-                onScrollBeginDrag={() => setGetSpeed(1) }
-                onMomentumScrollEnd={() => setGetSpeed(0) } 
                 scrollEventThrottle={0}
                 decelerationRate="normal"
                 showsHorizontalScrollIndicator={false}
@@ -413,8 +416,8 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   itemContainer: {
-    width: tryToSee.ITEM_WIDTH - 10 ,
-    height: 200,
+    width: tryToSee.ITEM_WIDTH - 20 ,
+    height:300,
     margin: tryToSee.SPACING, 
     overflow: "hidden"
   },
