@@ -144,7 +144,7 @@ export default function App( ) {
   const ref = React.useRef();
   //itemIndex gives me the item on which we are 
   const onItemPress = React.useCallback(itemIndex => {
-    ref?.current?.scrollToOffset({
+      ref?.current?.scrollToOffset({
       offset:itemIndex * width
     })
     //console.log(itemIndex)

@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { SharedElement } from 'react-navigation-shared-element';
 
 
-
+//font-family: 'Permanent Marker',
 
 const s = width * 0.68;
 const tryToSee = { 
@@ -227,6 +227,9 @@ const data = [
 ]
 
 
+
+
+
 function RenderFilter(props) {
   return (
     <Animated.ScrollView 
@@ -237,12 +240,13 @@ function RenderFilter(props) {
         {
           bodyGroups.map((item, index) => { 
             return(
-              <TouchableOpacity 
+              <TouchableOpacity
+                activeOpacity={0.8}
                 onPress={() =>  props.filterSelect(item) }
                 key={index}
               >
                 <View style={styles.bodyGroup}>
-                  <Text style={[ ( props.activeFilter=== item) ? {backgroundColor: "#3ACEB1", borderColor: "#3ACEB1"} : {backgroundColor: "#fff", borderColor: "#fff"} ,{ borderWidth: 1 ,fontSize: 16, fontWeight: "bold",borderRadius: 10 ,marginHorizontal: 10, color: "#555", paddingVertical: 13, paddingHorizontal: 22}]}>
+                  <Text style={[ ( props.activeFilter=== item) ? {backgroundColor: "#FFA91B", borderColor: "#FFA91B"} : {backgroundColor: "#fff", borderColor: "#fff"} ,{ borderWidth: 1 ,fontSize: 16, fontWeight: "bold",borderRadius: 10 ,marginHorizontal: 10, color: "#555", paddingVertical: 13, paddingHorizontal: 22,shadowColor: "#000",shadowOffset: {width: 0,height: 2,},shadowOpacity: 0.3,shadowRadius: 4,elevation: 5}]}>
                     {item}
                   </Text> 
                 </View> 
@@ -257,20 +261,16 @@ function RenderFilter(props) {
 
 
 export default function Home( { navigation }  ) { 
-  
   const [activeFilter , setActiveFilter] = useState("ALL");
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const scrollY = React.useRef(new Animated.Value(0)).current;
-
   const filterSelect = (item) => {
     setActiveFilter(i => i = item);
   }
- 
   return (
     <View style={styles.container}>
         <Text style={styles.title}> Workouts</Text>    
           <View>  
-
            <RenderFilter activeFilter={activeFilter} filterSelect={(item) => filterSelect(item)} /> 
 
             <Animated.ScrollView 
@@ -304,27 +304,28 @@ export default function Home( { navigation }  ) {
                     })
                     return(
                       <TouchableOpacity 
-                        onPress={() => { navigation.push("Measure", { item })}}
+                        activeOpacity={0.8}
+                        onPress={() => { console.log("asd"),navigation.push("Measure", { item })}}
                         style={styles.itemContainer}
                         key={item.key}
                         >
                           <SharedElement id={`item.${item.id}.photo`} style={[StyleSheet.absoluteFillObject]}> 
-                            <View style={[StyleSheet.absoluteFillObject, { paddingHorizontal: 11 ,flexDirection: "row",backgroundColor:`${item.color}` ,overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
+                            <View style={[StyleSheet.absoluteFillObject, { paddingHorizontal: 11 , backgroundColor:`${item.color}` ,overflow: 'hidden', borderRadius: tryToSee.RADIUS}]}>
                               {/* <Animated.Image 
                                 source={{uri: item.image}} 
                                 // style={[StyleSheet.absoluteFillObject, { resizeMode: "cover", transform : [{scale}]}]}
                                 style={[{ height: 100 ,resizeMode: "cover", transform : [{scale}]}]}
                               /> */}
                               <Icon name="barbell-outline"  
-                                style={styles.icon} 
+                                style={{alignSelf: "center",marginTop: 10}} 
                                 size={100} 
                                 color="#333" 
                               />
-                              <View style={{ paddingTop: 25, paddingHorizontal: 15}}>
-                                <Text style={{color : "#fff", marginVertical: 3, fontSize: 25}}>{ item.name }</Text>
-                                <Text style={{color : "#fff", fontSize: 18}}>Last : 3x12, 19kg</Text>
-                                <Text style={{color : "#fff", fontSize: 18}}>Last : 3x12, 19kg</Text>
-                                <Text style={{color : "#f9f9f9", fontSize: 15}}>last time: { item.date[0] }</Text>
+                              <View style={{ paddingHorizontal: 15, alignSelf:"center"}}>
+                                <Text style={{color : "#233", marginVertical: 3, marginBottom: 15 ,  paddingTop: 5, fontSize: 28}}>{ item.name }</Text>
+                                <Text style={{color : "#333", fontSize: 18}}>Last : 3x12, 19kg</Text>
+                                <Text style={{color : "#333", fontSize: 18}}>Last : 3x12, 19kg</Text>
+                                <Text style={{color : "#333", fontSize: 15}}>last time: { item.date[0] }</Text>
                               </View>
                             </View> 
                           </SharedElement> 
@@ -359,19 +360,16 @@ export default function Home( { navigation }  ) {
                     100*index, // where to start the animation 
                     100*(index + 10 ) // when the animation will end, (when next item starts animation)
                   ]
-
                   const opacityInputRange = [
                     -1, 
                     0,
                     100*index, // where to start the animation 
                     100*(index +1) // when the animation will end, (when next item starts animation)
                   ]
-
                   const scale = scrollY.interpolate({
                     inputRange,
                     outputRange: [1,1,1,0]
                   })
-
                   const opacity = scrollY.interpolate({
                     inputRange: opacityInputRange,
                     outputRange: [1,1,1,0]
@@ -394,7 +392,7 @@ export default function Home( { navigation }  ) {
 const styles = StyleSheet.create({
   container: { 
     flex: 1,
-    backgroundColor: '#232323',
+    backgroundColor: '#222',
     // backgroundColor: '#262C40',
     marginTop: 0,
     paddingHorizontal: 10,
@@ -407,19 +405,20 @@ const styles = StyleSheet.create({
   },
   bodyGroup: {
     marginVertical: 20,
-    alignItems: "center"     
+    alignItems: "center",
   },
   title: { 
-    color : "#fff",
-    fontSize: 30,
+    color : "#eee",
+    fontSize: 35,
     marginTop: 20,
     marginVertical: 10
   },
   itemContainer: {
-    width: tryToSee.ITEM_WIDTH - 20 ,
-    height:300,
+    width: tryToSee.ITEM_WIDTH - 40 ,
+    height: 300,
     margin: tryToSee.SPACING, 
-    overflow: "hidden"
+    overflow: "hidden",
+    
   },
   location : {
     fontSize: 30,
@@ -430,11 +429,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: tryToSee.SPACING,
     left: tryToSee.SPACING,
-  },
-  icon : {
-    alignSelf: "center",
-    marginVertical: 5
-  },
+  }, 
   days : {
     width: 52,
     height: 52,
